@@ -1,0 +1,6 @@
+const ACTION_TYPES = {
+  SET_PODCASTS: "SET_PODCASTS",
+  RESET: "RESET",
+};
+
+export default ACTION_TYPES;

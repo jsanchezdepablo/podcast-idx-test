@@ -1,13 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import reportWebVitals from "./reportWebVitals";
+import GlobalStateProvider from "states";
 import Layout from "layout";
 import routes from "routes";
 
 import "./index.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-const Application = () => <Layout>{routes}</Layout>;
+const Application = () => (
+  <GlobalStateProvider>
+    <Layout>{routes}</Layout>
+  </GlobalStateProvider>
+);
 
 root.render(<Application />);
 
