@@ -18,8 +18,8 @@
 
   &__cards {
     margin-top: 80px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-column-gap: 16px;
   }
 }
