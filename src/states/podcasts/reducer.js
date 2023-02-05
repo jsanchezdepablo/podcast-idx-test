@@ -29,6 +29,7 @@ const Reducer = (state, { type, payload }) => {
       return { ...state, podcast };
     },
     [ACTION_TYPES.SET_IS_LOADING]: () => ({ ...state, isLoading: payload }),
+    [ACTION_TYPES.SET_IS_FIRST_START]: () => ({ ...state, isFirstStart: payload }),
     [ACTION_TYPES.RESET]: () => ({ ...INIT_STATE }),
   };
   return config[type]?.() ?? state;

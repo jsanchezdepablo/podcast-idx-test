@@ -6,7 +6,19 @@ import ACTION_TYPES from "./action-types";
 const URL_PODCASTS = "https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json";
 const URL_PODCAST = "https://itunes.apple.com/lookup";
 
-export const useFetchPodcasts = () => {
+const usePodcastActions = () => {
+  const { dispatch } = Selector();
+
+  const setIsFirstStart = (isFirstStart) => {
+    dispatch({ type: ACTION_TYPES.SET_IS_FIRST_START, payload: isFirstStart });
+  };
+
+  return {
+    setIsFirstStart,
+  };
+};
+
+const useFetchPodcasts = () => {
   const { dispatch } = Selector();
   const { search: searchApi, result, isLoading /*  lastUpdated */ } = useFetchApi(URL_PODCASTS);
 
@@ -29,7 +41,7 @@ export const useFetchPodcasts = () => {
   return { searchPodcasts };
 };
 
-export const useFetchPodcast = () => {
+const useFetchPodcast = () => {
   const { dispatch } = Selector();
   const { search: searchApi, result, isLoading /*  lastUpdated */ } = useFetchApi(URL_PODCAST);
 
@@ -52,6 +64,6 @@ export const useFetchPodcast = () => {
   return { searchPodcast };
 };
 
-const actions = { useFetchPodcasts, useFetchPodcast };
+const actions = { usePodcastActions, useFetchPodcasts, useFetchPodcast };
 
 export default actions;
