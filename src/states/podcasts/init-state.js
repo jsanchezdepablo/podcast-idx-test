@@ -1,5 +1,6 @@
 const INIT_STATE = {
   podcasts: [],
+  podcast: {},
   isLoading: false,
 };
 
