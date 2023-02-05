@@ -1,17 +1,18 @@
 import { useState } from "react";
+import { handlerUrl } from "./handler-url";
 
 export const useFetchApi = (url) => {
-  const [result, setResult] = useState([]);
-  const [lastUpdated, setLastUpdated] = useState();
+  const [result, setResult] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [lastUpdated, setLastUpdated] = useState();
   const [status, setStatus] = useState();
 
-  const search = (id) => {
+  const search = (params = null) => {
     setIsLoading(true);
-    setResult([]);
+    setResult(null);
     setStatus();
 
-    return fetch(id != null ? url + "/" + id : url)
+    return fetch(handlerUrl(url, params))
       .then((response) => {
         setStatus(response.status);
         setLastUpdated(new Date().getTime());
@@ -19,7 +20,7 @@ export const useFetchApi = (url) => {
       })
       .then((result) => {
         setIsLoading(false);
-        setResult(result.feed.entry);
+        setResult(result);
       })
       .catch((e) => {
         setStatus(e.status);
