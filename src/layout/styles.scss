@@ -1,6 +1,10 @@
 @import "assets/styles/colors.scss";
 
 .layout {
+  &__link {
+    text-decoration: none;
+  }
+
   &__header {
     margin-top: 1em;
     font-size: 2em;
