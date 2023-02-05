@@ -1,9 +1,11 @@
+@import "assets/styles/colors.scss";
+
 .layout {
   &__header {
     margin-top: 1em;
     font-size: 2em;
     font-weight: 500;
-    color: #0693d4;
+    color: $primary-color;
     box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%);
   }
 
