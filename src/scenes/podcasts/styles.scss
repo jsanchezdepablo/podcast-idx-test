@@ -1,0 +1,25 @@
+@import "assets/styles/colors.scss";
+
+.podcast {
+  &__filter-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+
+  &__filter-count {
+    padding: 0 4px 2px 4px;
+    background-color: $primary-color;
+    border-radius: 7px;
+    font-weight: 500;
+    color: white;
+  }
+
+  &__cards {
+    margin-top: 80px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+}

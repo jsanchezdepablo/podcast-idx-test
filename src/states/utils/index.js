@@ -30,5 +30,5 @@ export const useFetchApi = (url) => {
       });
   };
 
-  return { result, lastUpdated, search, isLoading, status };
+  return { search, result, isLoading, lastUpdated, status };
 };
