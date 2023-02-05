@@ -9,12 +9,12 @@ const Reducer = (state, { type, payload }) => {
         const artist = podcast["im:artist"].label;
         const image = podcast["im:image"][2].label;
         const description = podcast.summary.label;
+        const id = podcast.id.attributes["im:id"];
 
-        return { title, artist, image, description };
+        return { id, title, artist, image, description };
       });
       return { ...state, podcasts };
     },
-
     [ACTION_TYPES.SET_IS_LOADING]: () => ({ ...state, isLoading: payload }),
     [ACTION_TYPES.RESET]: () => ({ ...INIT_STATE }),
   };
