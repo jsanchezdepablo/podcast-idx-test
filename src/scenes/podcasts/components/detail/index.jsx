@@ -3,7 +3,7 @@ import Paper from "@mui/material/Paper";
 import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import { usePodcastsSelector, PodcastsActions } from "states/podcasts";
-import { getDateParser, getMinutesFromMs } from "utils/handler-time";
+import { getDateParser, getMinutesParserFromMs } from "utils/handler-time";
 import LargeCard from "../large-card";
 
 import "./styles.scss";
@@ -53,7 +53,7 @@ const DetailView = ({ match }) => {
         ? podcast?.episodes?.map((episode) => ({
             ...episode,
             date: getDateParser(episode.date),
-            duration: getMinutesFromMs(episode.duration),
+            duration: getMinutesParserFromMs(episode.duration),
           }))
         : [],
     [podcast.episodes],
