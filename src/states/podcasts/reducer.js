@@ -20,6 +20,7 @@ const Reducer = (state, { type, payload }) => {
       const podcast = payload.results.reduce((prev, current) => {
         prev["id"] = current.trackId;
         prev["episodesCount"] = current.trackCount;
+        prev["audio"] = current.feedUrl;
         prev["episodes"] = [{ title: current.trackName, date: current.releaseDate, duration: current.trackTimeMillis }];
         return prev;
       }, {});
@@ -28,6 +29,8 @@ const Reducer = (state, { type, payload }) => {
     },
     [ACTION_TYPES.SET_IS_LOADING]: () => ({ ...state, isLoading: payload }),
     [ACTION_TYPES.SET_IS_FIRST_START]: () => ({ ...state, isFirstStart: payload }),
+    [ACTION_TYPES.SET_LAST_PODCASTS_UPDATED_DATE]: () => ({ ...state, lastPodcastsUpdatedDate: payload }),
+    [ACTION_TYPES.SET_LAST_DETAIL_PODCAST_UPDATED_DATE]: () => ({ ...state, lastDetailPodcastUpdatedDate: payload }),
     [ACTION_TYPES.RESET]: () => ({ ...INIT_STATE }),
   };
   return config[type]?.() ?? state;

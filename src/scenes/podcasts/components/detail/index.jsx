@@ -3,7 +3,7 @@ import Paper from "@mui/material/Paper";
 import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import { usePodcastsSelector, PodcastsActions } from "states/podcasts";
-import { getDateParser, getMinutes } from "utils/time-parser";
+import { getDateParser, getMinutesFromMs } from "utils/handler-time";
 import LargeCard from "../large-card";
 
 import "./styles.scss";
@@ -29,7 +29,7 @@ const COLUMNS = [
 
 const DetailView = ({ match }) => {
   const {
-    state: { podcasts, podcast, isLoading },
+    state: { podcasts, podcast, isLoading, lastDetailPodcastUpdatedDate },
   } = usePodcastsSelector();
 
   const { searchPodcast } = PodcastsActions.useFetchPodcast();
@@ -41,7 +41,7 @@ const DetailView = ({ match }) => {
 
   useEffect(() => {
     if (match.params.id != null) {
-      searchPodcast(match.params.id);
+      searchPodcast(match.params.id, lastDetailPodcastUpdatedDate);
     }
   }, []);
 
@@ -61,7 +61,7 @@ const DetailView = ({ match }) => {
       ...episode,
       id: podcast.id,
       date: getDateParser(episode.date),
-      duration: getMinutes(episode.duration),
+      duration: getMinutesFromMs(episode.duration),
     }));
 
   return (
