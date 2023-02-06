@@ -11,13 +11,13 @@ const PodcastsView = () => {
   const [filteredPodcasts, setFilteredPodcasts] = useState([]);
 
   const {
-    state: { podcasts, isLoading, lastPodcastsUpdatedDate },
+    state: { podcasts, isLoading, lastUpdatedDate },
   } = usePodcastsSelector();
 
   const { searchPodcasts } = PodcastsActions.useFetchPodcasts();
 
   useEffect(() => {
-    searchPodcasts(lastPodcastsUpdatedDate);
+    searchPodcasts(lastUpdatedDate);
   }, []);
 
   useEffect(() => {

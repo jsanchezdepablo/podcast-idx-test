@@ -15,22 +15,45 @@ const Reducer = (state, { type, payload }) => {
       });
       return { ...state, podcasts };
     },
-
-    [ACTION_TYPES.SET_PODCAST]: () => {
-      const podcast = payload.results.reduce((prev, current) => {
-        prev["id"] = current.trackId;
-        prev["episodesCount"] = current.trackCount;
-        prev["audio"] = current.feedUrl;
-        prev["episodes"] = [{ title: current.trackName, date: current.releaseDate, duration: current.trackTimeMillis }];
+    [ACTION_TYPES.SET_PODCAST_EPISODES]: () => {
+      const episodes = payload.results.reduce((prev, current) => {
+        if (current.kind === "podcast-episode") {
+          const episode = {
+            id: current.trackId,
+            collectionId: current.collectionId,
+            name: current.trackName,
+            date: current.releaseDate,
+            duration: current.trackTimeMillis,
+            audio: current.previewUrl,
+            description: current.description,
+          };
+          prev.push(episode);
+        }
         return prev;
-      }, {});
+      }, []);
 
-      return { ...state, podcast };
+      const podcastsWithEpisodes = state.podcasts.map((podcast) => {
+        if (episodes[0].collectionId == podcast.id) {
+          return { ...podcast, episodes };
+        } else {
+          return podcast;
+        }
+      });
+      return { ...state, podcasts: podcastsWithEpisodes };
     },
     [ACTION_TYPES.SET_IS_LOADING]: () => ({ ...state, isLoading: payload }),
     [ACTION_TYPES.SET_IS_FIRST_START]: () => ({ ...state, isFirstStart: payload }),
-    [ACTION_TYPES.SET_LAST_PODCASTS_UPDATED_DATE]: () => ({ ...state, lastPodcastsUpdatedDate: payload }),
-    [ACTION_TYPES.SET_LAST_DETAIL_PODCAST_UPDATED_DATE]: () => ({ ...state, lastDetailPodcastUpdatedDate: payload }),
+    [ACTION_TYPES.SET_LAST_PODCASTS_UPDATED_DATE]: () => ({ ...state, lastUpdatedDate: payload }),
+    [ACTION_TYPES.SET_LAST_PODCAST_EPISODES_UPDATED_DATE]: () => {
+      const podcastsWithLastUpdatedDate = state.podcasts.map((podcast) => {
+        if (payload.podcastId == podcast.id) {
+          return { ...podcast, lastUpdatedDate: payload.lastUpdatedDate };
+        } else {
+          return podcast;
+        }
+      });
+      return { ...state, podcasts: podcastsWithLastUpdatedDate };
+    },
     [ACTION_TYPES.RESET]: () => ({ ...INIT_STATE }),
   };
   return config[type]?.() ?? state;

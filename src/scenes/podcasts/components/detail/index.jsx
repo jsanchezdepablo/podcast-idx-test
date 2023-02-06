@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import Paper from "@mui/material/Paper";
 import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
@@ -10,7 +10,7 @@ import "./styles.scss";
 
 const COLUMNS = [
   {
-    field: "title",
+    field: "name",
     headerName: "Title",
     sortable: false,
     minWidth: 450,
@@ -29,10 +29,12 @@ const COLUMNS = [
 
 const DetailView = ({ match }) => {
   const {
-    state: { podcasts, podcast, isLoading, lastDetailPodcastUpdatedDate },
+    state: { podcasts, isLoading },
   } = usePodcastsSelector();
 
-  const { searchPodcast } = PodcastsActions.useFetchPodcast();
+  const podcast = podcasts?.find(({ id }) => id === match.params.podcastId);
+
+  const { searchEpisodes } = PodcastsActions.useFetchEpisodes();
   const { setIsFirstStart } = PodcastsActions.usePodcastActions();
 
   useEffect(() => {
@@ -41,32 +43,36 @@ const DetailView = ({ match }) => {
 
   useEffect(() => {
     if (match.params.podcastId != null) {
-      searchPodcast(match.params.podcastId, lastDetailPodcastUpdatedDate);
+      searchEpisodes(match.params.podcastId, podcast.lastUpdatedDate);
     }
   }, []);
 
-  const getRowData = () =>
-    podcast?.episodes?.map((episode) => ({
-      ...episode,
-      id: podcast.id,
-      date: getDateParser(episode.date),
-      duration: getMinutesFromMs(episode.duration),
-    }));
+  const rowData = useMemo(
+    () =>
+      podcast.hasOwnProperty("episodes")
+        ? podcast?.episodes?.map((episode) => ({
+            ...episode,
+            date: getDateParser(episode.date),
+            duration: getMinutesFromMs(episode.duration),
+          }))
+        : [],
+    [podcast.episodes],
+  );
 
   return (
     <div className="detail">
       <Paper elevation={3}>
-        <LargeCard data={podcasts?.find(({ id }) => id === match.params.podcastId)} />
+        <LargeCard data={podcast} />
       </Paper>
       <div className="detail__episodes">
         <Paper elevation={3}>
-          <div className="detail__episodes-count">Episodes: {podcast.episodesCount}</div>
+          <div className="detail__episodes-count">Episodes: {podcast?.episodes?.length}</div>
         </Paper>
         <Paper elevation={3}>
           <DataGrid
+            getRowId={({ id }) => id}
             columns={COLUMNS}
-            rows={getRowData() ?? []}
-            getRowId={(row) => row.id}
+            rows={rowData}
             loading={isLoading}
             experimentalFeatures={{ newEditingApi: true }}
             autoHeight

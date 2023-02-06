@@ -1,10 +1,8 @@
 const INIT_STATE = {
   podcasts: [],
-  podcast: {},
   isLoading: false,
   isFirstStart: true,
-  lastPodcastsUpdatedDate: null,
-  lastDetailPodcastUpdatedDate: null,
+  lastUpdatedDate: null,
 };
 
 export default INIT_STATE;

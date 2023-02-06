@@ -5,7 +5,7 @@ import ACTION_TYPES from "./action-types";
 import { getIsSpent24hours } from "utils/handler-time";
 
 const URL_PODCASTS = "https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json";
-const URL_PODCAST = "https://itunes.apple.com/lookup";
+const URL_EPISODES = "https://itunes.apple.com/lookup";
 
 const usePodcastActions = () => {
   const { dispatch } = Selector();
@@ -48,13 +48,13 @@ const useFetchPodcasts = (shouldCacheData = true) => {
   return { searchPodcasts };
 };
 
-const useFetchPodcast = (shouldCacheData = true) => {
+const useFetchEpisodes = (shouldCacheData = true) => {
   const { dispatch } = Selector();
-  const { search: searchApi, result, isLoading, lastUpdatedDate } = useFetchApi(URL_PODCAST);
+  const { search: searchApi, result, isLoading, lastUpdatedDate } = useFetchApi(URL_EPISODES);
 
   useEffect(() => {
     if (result != null) {
-      dispatch({ type: ACTION_TYPES.SET_PODCAST, payload: result });
+      dispatch({ type: ACTION_TYPES.SET_PODCAST_EPISODES, payload: result });
     }
   }, [result]);
 
@@ -63,20 +63,23 @@ const useFetchPodcast = (shouldCacheData = true) => {
   }, [isLoading]);
 
   useEffect(() => {
-    if (lastUpdatedDate != null) {
-      dispatch({ type: ACTION_TYPES.SET_LAST_DETAIL_PODCAST_UPDATED_DATE, payload: lastUpdatedDate });
+    if (lastUpdatedDate != null && result != null) {
+      dispatch({
+        type: ACTION_TYPES.SET_LAST_PODCAST_EPISODES_UPDATED_DATE,
+        payload: { lastUpdatedDate, podcastId: result?.results[0]?.collectionId },
+      });
     }
-  }, [lastUpdatedDate]);
+  }, [lastUpdatedDate, result]);
 
-  const searchPodcast = (id, storageDate) => {
+  const searchEpisodes = (id, storageDate) => {
     if (!isLoading && (shouldCacheData ? getIsSpent24hours(storageDate) : true)) {
-      searchApi({ id });
+      searchApi({ id, entity: "podcastEpisode" });
     }
   };
 
-  return { searchPodcast };
+  return { searchEpisodes };
 };
 
-const actions = { usePodcastActions, useFetchPodcasts, useFetchPodcast };
+const actions = { usePodcastActions, useFetchPodcasts, useFetchEpisodes };
 
 export default actions;

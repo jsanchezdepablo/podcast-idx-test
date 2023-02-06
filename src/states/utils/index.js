@@ -15,12 +15,12 @@ export const useFetchApi = (url) => {
     return fetch(handlerUrl(url, params))
       .then((response) => {
         setStatus(response.status);
-        setLastUpdatedDate(Date.now());
         return response.json();
       })
       .then((result) => {
         setIsLoading(false);
         setResult(result);
+        setLastUpdatedDate(Date.now());
       })
       .catch((e) => {
         setStatus(e.status);
