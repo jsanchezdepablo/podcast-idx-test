@@ -18,6 +18,11 @@
     opacity: 0.2;
   }
 
+  &__link {
+    text-decoration: none;
+    color: inherit;
+  }
+
   &__primary-text {
     padding: 20px;
     &--title {

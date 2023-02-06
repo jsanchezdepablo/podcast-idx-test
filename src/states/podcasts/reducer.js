@@ -19,10 +19,8 @@ const Reducer = (state, { type, payload }) => {
     [ACTION_TYPES.SET_PODCAST]: () => {
       const podcast = payload.results.reduce((prev, current) => {
         prev["id"] = current.trackId;
-        prev["title"] = current.trackName;
-        prev["date"] = current.releaseDate;
-        prev["duration"] = current.trackTimeMillis;
         prev["episodesCount"] = current.trackCount;
+        prev["episodes"] = [{ title: current.trackName, date: current.releaseDate, duration: current.trackTimeMillis }];
         return prev;
       }, {});
 
