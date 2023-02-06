@@ -8,8 +8,8 @@ const EpisodeView = lazy(() => import("./components/episode"));
 
 const PODCASTS = {
   PATH: "/",
-  DETAIL_PATH: "/podcast/:id",
-  EPISODE_PATH: "/podcast/:id/episode/:id",
+  DETAIL_PATH: "/podcast/:podcastId",
+  EPISODE_PATH: "/podcast/:podcastId/episode/:episodeId",
 };
 
 const podcastsRoutes = [

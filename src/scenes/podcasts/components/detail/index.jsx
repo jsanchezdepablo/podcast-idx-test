@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect } from "react";
 import Paper from "@mui/material/Paper";
 import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
@@ -40,21 +40,10 @@ const DetailView = ({ match }) => {
   }, []);
 
   useEffect(() => {
-    if (match.params.id != null) {
-      searchPodcast(match.params.id, lastDetailPodcastUpdatedDate);
+    if (match.params.podcastId != null) {
+      searchPodcast(match.params.podcastId, lastDetailPodcastUpdatedDate);
     }
   }, []);
-
-  const episodeCard = useMemo(() => {
-    const podcastInfo = podcasts?.find(({ id }) => id == podcast.id);
-    return podcastInfo != null ? (
-      <LargeCard data={podcastInfo} />
-    ) : (
-      <div className="detail__card-no-info">
-        <h2>No card info</h2>
-      </div>
-    );
-  }, [podcast]);
 
   const getRowData = () =>
     podcast?.episodes?.map((episode) => ({
@@ -66,7 +55,9 @@ const DetailView = ({ match }) => {
 
   return (
     <div className="detail">
-      <Paper elevation={3}>{episodeCard}</Paper>
+      <Paper elevation={3}>
+        <LargeCard data={podcasts?.find(({ id }) => id === match.params.podcastId)} />
+      </Paper>
       <div className="detail__episodes">
         <Paper elevation={3}>
           <div className="detail__episodes-count">Episodes: {podcast.episodesCount}</div>
