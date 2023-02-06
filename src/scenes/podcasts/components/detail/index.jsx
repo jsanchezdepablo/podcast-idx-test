@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo } from "react";
 import Paper from "@mui/material/Paper";
 import { DataGrid } from "@mui/x-data-grid";
+import { Link } from "react-router-dom";
 import { usePodcastsSelector, PodcastsActions } from "states/podcasts";
 import { getDateParser, getMinutes } from "utils/time-parser";
 import LargeCard from "../large-card";
@@ -8,7 +9,20 @@ import LargeCard from "../large-card";
 import "./styles.scss";
 
 const COLUMNS = [
-  { field: "title", headerName: "Title", sortable: false, minWidth: 450 },
+  {
+    field: "title",
+    headerName: "Title",
+    sortable: false,
+    minWidth: 450,
+    renderCell: (params) => (
+      <Link
+        className="detail__grid-link"
+        to={(location) => ({ ...location, pathname: `${location.pathname}/episode/${params.id}` })}
+      >
+        {params.value}
+      </Link>
+    ),
+  },
   { field: "date", headerName: "Date", sortable: false, minWidth: 150 },
   { field: "duration", headerName: "Duration", sortable: false, minWidth: 120 },
 ];
@@ -33,12 +47,19 @@ const DetailView = ({ match }) => {
 
   const episodeCard = useMemo(() => {
     const podcastInfo = podcasts?.find(({ id }) => id == podcast.id);
-    return podcastInfo != null ? <LargeCard data={podcastInfo} /> : <h2>No card info</h2>;
+    return podcastInfo != null ? (
+      <LargeCard data={podcastInfo} />
+    ) : (
+      <div className="detail__card-no-info">
+        <h2>No card info</h2>
+      </div>
+    );
   }, [podcast]);
 
   const getRowData = () =>
     podcast?.episodes?.map((episode) => ({
       ...episode,
+      id: podcast.id,
       date: getDateParser(episode.date),
       duration: getMinutes(episode.duration),
     }));
@@ -54,7 +75,7 @@ const DetailView = ({ match }) => {
           <DataGrid
             columns={COLUMNS}
             rows={getRowData() ?? []}
-            getRowId={(row) => row.title}
+            getRowId={(row) => row.id}
             loading={isLoading}
             experimentalFeatures={{ newEditingApi: true }}
             autoHeight

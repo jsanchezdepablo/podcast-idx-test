@@ -3,6 +3,10 @@
   justify-content: space-between;
   gap: 100px;
 
+  &__card-no-info {
+    padding: 20px;
+  }
+
   &__episodes {
     display: flex;
     flex-direction: column;
@@ -14,5 +18,10 @@
       font-weight: bold;
       font-size: 24px;
     }
+  }
+
+  &__grid-link {
+    text-decoration: none;
+    color: inherit;
   }
 }
