@@ -1,0 +1,40 @@
+@import "assets/styles/colors.scss";
+
+.detail {
+  display: flex;
+  justify-content: space-between;
+  gap: 100px;
+
+  &__episodes {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+
+    &-count {
+      padding: 12px;
+      font-weight: bold;
+      font-size: 24px;
+    }
+  }
+
+  &__grid {
+    &-link {
+      text-decoration: none;
+      color: $primary-color;
+      text-transform: capitalize;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+    &-container {
+      height: 100%;
+    }
+  }
+}
+
+.MuiDataGrid-columnHeaderTitle {
+  font-weight: bold;
+}
+.data-grid__even-row {
+  background-color: $primary-color-light;
+}
