@@ -1,0 +1,10 @@
+.audio {
+  &__container {
+    display: flex;
+    justify-content: center;
+  }
+  &__player {
+    width: 95%;
+    height: 35px;
+  }
+}
