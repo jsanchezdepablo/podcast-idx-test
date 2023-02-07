@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`States Component Matches snapshot 1`] = `
+<Provider>
+  <div
+    className="test"
+  >
+    Children
+  </div>
+</Provider>
+`;

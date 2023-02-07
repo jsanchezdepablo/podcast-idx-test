@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Podcasts Routes Matches snapshot 1`] = `
+<div>
+  <Route
+    exact={true}
+    key="detail"
+    path="/podcast/:podcastId"
+  >
+    <Component />
+  </Route>
+  <Route
+    exact={true}
+    key="episode"
+    path="/podcast/:podcastId/episode/:episodeId"
+  >
+    <Component />
+  </Route>
+  <Route
+    exact={true}
+    key="podcasts"
+    path="/"
+  >
+    <Component />
+  </Route>
+</div>
+`;

@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EpisodeView Component Matches snapshot 1`] = `
+<div
+  className="detail"
+>
+  <ForwardRef(Paper)
+    elevation={3}
+  >
+    <LargeCard
+      data={
+        Object {
+          "artist": "artist-1",
+          "description": "description",
+          "episodes": Array [
+            Object {
+              "audio": "audio",
+              "date": "date",
+              "description": "description",
+              "duration": "duration",
+              "id": "11",
+              "name": "name",
+            },
+          ],
+          "id": "1",
+          "image": "//image",
+          "title": "title-1",
+        }
+      }
+    />
+  </ForwardRef(Paper)>
+  <div
+    className="detail__episode"
+  >
+    <ForwardRef(Paper)
+      className="detail__episode-container"
+      elevation={3}
+    >
+      <div>
+        <div
+          className="detail__episode-title"
+        >
+          name
+        </div>
+        <div
+          className="detail__episode-description"
+        >
+          <TextWithLink
+            text="description"
+          />
+        </div>
+      </div>
+      <hr />
+      <AudioPlayer
+        src="audio"
+      />
+    </ForwardRef(Paper)>
+  </div>
+</div>
+`;

@@ -4,7 +4,7 @@ import INIT_STATE from "./init-state";
 const Reducer = (state, { type, payload }) => {
   const config = {
     [ACTION_TYPES.SET_PODCASTS]: () => {
-      const podcasts = payload.feed.entry.map((podcast) => {
+      const podcasts = payload?.feed?.entry.map((podcast) => {
         const title = podcast.title.label?.split("-")[0];
         const artist = podcast["im:artist"].label;
         const image = podcast["im:image"][2].label;
@@ -16,7 +16,7 @@ const Reducer = (state, { type, payload }) => {
       return { ...state, podcasts };
     },
     [ACTION_TYPES.SET_PODCAST_EPISODES]: () => {
-      const episodes = payload.results.reduce((prev, current) => {
+      const episodes = payload?.results?.reduce((prev, current) => {
         if (current.kind === "podcast-episode") {
           const episode = {
             id: current.trackId,

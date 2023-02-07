@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PodcastsView Matches snapshot 1`] = `
+<div>
+  <div
+    className="podcast__filter-container"
+  >
+    <div
+      className="podcast__filter-count"
+    >
+      0
+    </div>
+    <ForwardRef(TextField)
+      label="Filter podcasts"
+      onChange={[Function]}
+      size="small"
+      variant="outlined"
+    />
+  </div>
+  <div
+    className="podcast__cards"
+  />
+</div>
+`;

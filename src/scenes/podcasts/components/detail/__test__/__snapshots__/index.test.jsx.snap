@@ -1,0 +1,94 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DetailView Component Matches snapshot 1`] = `
+<div
+  className="detail"
+>
+  <ForwardRef(Paper)
+    elevation={3}
+  >
+    <LargeCard
+      data={
+        Object {
+          "artist": "artist-1",
+          "description": "description",
+          "episodes": Array [
+            Object {
+              "date": "date",
+              "duration": "duration",
+              "name": "name",
+            },
+          ],
+          "id": "1",
+          "image": "//image",
+          "title": "title-1",
+        }
+      }
+    />
+  </ForwardRef(Paper)>
+  <div
+    className="detail__episodes"
+  >
+    <ForwardRef(Paper)
+      elevation={3}
+    >
+      <div
+        className="detail__episodes-count"
+      >
+        Episodes: 
+        1
+      </div>
+    </ForwardRef(Paper)>
+    <ForwardRef(Paper)
+      className="detail__grid-container"
+      elevation={3}
+    >
+      <Memo(ForwardRef(DataGrid))
+        columns={
+          Array [
+            Object {
+              "field": "name",
+              "headerName": "Title",
+              "minWidth": 400,
+              "renderCell": [Function],
+              "sortable": false,
+            },
+            Object {
+              "field": "date",
+              "headerName": "Date",
+              "minWidth": 150,
+              "sortable": false,
+            },
+            Object {
+              "align": "center",
+              "field": "duration",
+              "headerName": "Duration",
+              "minWidth": 120,
+              "sortable": false,
+            },
+          ]
+        }
+        disableColumnMenu={true}
+        experimentalFeatures={
+          Object {
+            "newEditingApi": true,
+          }
+        }
+        getRowClassName={[Function]}
+        getRowId={[Function]}
+        hideFooter={true}
+        loading={false}
+        rows={
+          Array [
+            Object {
+              "date": "Invalid date",
+              "duration": "Invalid date",
+              "name": "name",
+            },
+          ]
+        }
+      />
+    </ForwardRef(Paper)>
+  </div>
+</div>
+`;
