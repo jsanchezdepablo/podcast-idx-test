@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AudioPlayer Component Matches snapshot 1`] = `
+<div
+  className="audio__container"
+>
+  <audio
+    className="audio__player"
+    controls={true}
+    onPause={[Function]}
+    onPlay={[Function]}
+  >
+    <source
+      src="src"
+      type="audio/mpeg"
+    />
+    Your browser does not support the audio element.
+  </audio>
+</div>
+`;

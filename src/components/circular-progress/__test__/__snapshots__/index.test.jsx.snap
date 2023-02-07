@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DefaultCircularProgress Component Matches snapshot 1`] = `
+<div
+  className="circular-progress__container"
+>
+  <ForwardRef(CircularProgress) />
+</div>
+`;

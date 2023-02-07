@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Layout Matches snapshot 1`] = `
+<ForwardRef(Container)
+  maxWidth="lg"
+>
+  <div
+    className="layout__header"
+  >
+    <Link
+      className="layout__header-link"
+      to="/"
+    >
+      <div
+        className="layout__header-title"
+      >
+        Podcaster
+      </div>
+    </Link>
+  </div>
+  <div
+    className="layout__content"
+  />
+</ForwardRef(Container)>
+`;
