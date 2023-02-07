@@ -75,6 +75,9 @@ const DetailView = ({ match }) => {
             rows={rowData}
             loading={isLoading}
             experimentalFeatures={{ newEditingApi: true }}
+            getRowClassName={(params) =>
+              params.indexRelativeToCurrentPage % 2 === 0 ? "data-grid__even-row" : "data-grid__odd-row"
+            }
             disableColumnMenu
             hideFooter
           />
