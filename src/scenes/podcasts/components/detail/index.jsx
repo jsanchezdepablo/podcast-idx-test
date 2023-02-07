@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo } from "react";
 import Paper from "@mui/material/Paper";
+import Tooltip from "@mui/material/Tooltip";
 import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import { usePodcastsSelector, PodcastsActions } from "states/podcasts";
@@ -15,12 +16,14 @@ const COLUMNS = [
     sortable: false,
     minWidth: 400,
     renderCell: (params) => (
-      <Link
-        className="detail__grid-link"
-        to={(location) => ({ ...location, pathname: `${location.pathname}/episode/${params.id}` })}
-      >
-        {params.value}
-      </Link>
+      <Tooltip title={params.value}>
+        <Link
+          className="detail__grid-link"
+          to={(location) => ({ ...location, pathname: `${location.pathname}/episode/${params.id}` })}
+        >
+          {params.value}
+        </Link>
+      </Tooltip>
     ),
   },
   { field: "date", headerName: "Date", sortable: false, minWidth: 150 },
