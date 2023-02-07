@@ -21,7 +21,7 @@ const Reducer = (state, { type, payload }) => {
           const episode = {
             id: current.trackId,
             collectionId: current.collectionId,
-            name: current.trackName,
+            name: current.trackName.toLowerCase(),
             date: current.releaseDate,
             duration: current.trackTimeMillis,
             audio: current.previewUrl,
