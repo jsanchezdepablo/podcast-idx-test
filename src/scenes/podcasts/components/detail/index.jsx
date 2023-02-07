@@ -13,7 +13,7 @@ const COLUMNS = [
     field: "name",
     headerName: "Title",
     sortable: false,
-    minWidth: 450,
+    minWidth: 400,
     renderCell: (params) => (
       <Link
         className="detail__grid-link"
@@ -24,7 +24,7 @@ const COLUMNS = [
     ),
   },
   { field: "date", headerName: "Date", sortable: false, minWidth: 150 },
-  { field: "duration", headerName: "Duration", sortable: false, minWidth: 120 },
+  { field: "duration", headerName: "Duration", sortable: false, minWidth: 120, align: "center" },
 ];
 
 const DetailView = ({ match }) => {
@@ -43,20 +43,20 @@ const DetailView = ({ match }) => {
 
   useEffect(() => {
     if (match.params.podcastId != null) {
-      searchEpisodes(match.params.podcastId, podcast.lastUpdatedDate);
+      searchEpisodes(match.params.podcastId, podcast?.lastUpdatedDate);
     }
   }, []);
 
   const rowData = useMemo(
     () =>
-      podcast.hasOwnProperty("episodes")
+      podcast?.hasOwnProperty("episodes")
         ? podcast?.episodes?.map((episode) => ({
             ...episode,
             date: getDateParser(episode.date),
             duration: getMinutesParserFromMs(episode.duration),
           }))
         : [],
-    [podcast.episodes],
+    [podcast?.episodes],
   );
 
   return (
@@ -68,14 +68,13 @@ const DetailView = ({ match }) => {
         <Paper elevation={3}>
           <div className="detail__episodes-count">Episodes: {podcast?.episodes?.length}</div>
         </Paper>
-        <Paper elevation={3}>
+        <Paper elevation={3} className="detail__grid-container">
           <DataGrid
             getRowId={({ id }) => id}
             columns={COLUMNS}
             rows={rowData}
             loading={isLoading}
             experimentalFeatures={{ newEditingApi: true }}
-            autoHeight
             disableColumnMenu
             hideFooter
           />

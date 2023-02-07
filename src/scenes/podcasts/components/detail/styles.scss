@@ -16,8 +16,13 @@
     }
   }
 
-  &__grid-link {
-    text-decoration: none;
-    color: inherit;
+  &__grid {
+    &-link {
+      text-decoration: none;
+      color: inherit;
+    }
+    &-container {
+      height: 100%;
+    }
   }
 }

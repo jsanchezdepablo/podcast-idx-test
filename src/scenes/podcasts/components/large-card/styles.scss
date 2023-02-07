@@ -35,6 +35,12 @@
 
   &__secondary-text {
     padding: 10px;
+    display: flex;
+    flex-direction: column;
+    text-overflow: ellipsis;
+    height: 25vh;
+    overflow: hidden;
+
     &--title {
       font-weight: 500;
     }
