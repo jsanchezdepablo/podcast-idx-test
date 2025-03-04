@@ -8,6 +8,76 @@ If you have problems fetching data, try to visit [CORS Anywhere](https://cors-an
 Then press the button "Request temporary access to the demo server".\
 This should fix the problem.
 
+## Project Structure and Architecture
+
+This project follows a standard Create React App structure with a focus on modularity and scalability. Below is an overview of the project's structure and architecture:
+
+### Project Structure
+
+```
+├── public/
+│   ├── index.html
+│   ├── favicon.ico
+│   └── manifest.json
+├── src/
+│   ├── assets/
+│   │   └── images/
+│   ├── components/
+│   │   ├── Header.js
+│   │   ├── Footer.js
+│   │   └── PodcastList.js
+│   ├── pages/
+│   │   ├── HomePage.js
+│   │   └── PodcastPage.js
+│   ├── services/
+│   │   └── api.js
+│   ├── App.js
+│   ├── index.js
+│   └── App.css
+├── .gitignore
+├── package.json
+└── README.md
+```
+
+### Architecture
+
+#### Components
+
+- **Header.js**: Contains the navigation bar and logo.
+- **Footer.js**: Contains the footer content.
+- **PodcastList.js**: Displays a list of podcasts.
+
+#### Pages
+
+- **HomePage.js**: The landing page of the application.
+- **PodcastPage.js**: Displays detailed information about a selected podcast.
+
+#### Services
+
+- **api.js**: Contains functions to fetch data from external APIs.
+
+### State Management
+
+The project uses React's built-in state management with hooks like `useState` and `useEffect` for managing component state and side effects.
+
+### Styling
+
+Styling is done using CSS modules. Each component has its own CSS file to maintain modularity and avoid global scope pollution.
+
+### API Integration
+
+The `services/api.js` file contains all the functions required to interact with external APIs. This helps in keeping the API calls organized and reusable across different components.
+
+### Deployment
+
+The project is set up for deployment using the `serve` library. After building the project using `npm run build`, you can deploy it by running `serve -s build/`.
+
+### Testing
+
+Testing is done using Jest and React Testing Library. You can run the tests using `npm run test` and check the coverage using `npm run test:coverage`.
+
+This structure and architecture ensure that the project is easy to maintain, scalable, and follows best practices for a React application.
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -42,13 +112,3 @@ You have to execute `npm install -g serve` to install serve library.\
 Then you can execute `serve -s build/` to run this project.
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
